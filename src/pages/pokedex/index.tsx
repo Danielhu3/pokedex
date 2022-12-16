@@ -3,16 +3,32 @@ import Image from 'next/image'
 import Link from 'next/link'
 import  PokemonCard  from '../../components/PokemonCard/'
 import useTypeColor from '../../hooks/useTypeColor'
+
+type PokemonProps = {
+  name:string;
+  url:string;
+  id: number;
+}
+
+type PrimaryTypesProps = {
+  [key:string]:string
+}
+
+interface Pokedex{
+  primaryTypes: PrimaryTypesProps
+  result: Array<PokemonProps>
+}
+
 export async function getStaticProps() {
     
-    const data = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=151')
+    const data = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=30')
     const result = await data.json()
 
-    result.results.forEach((item, index:number)=>{
+    result.results.forEach((item: PokemonProps, index:number)=>{
       item.id = index +1
     })
 
-    let primaryTypes = {}
+    let primaryTypes: PrimaryTypesProps = {}
     
     for(let x = 1; x<=151;x++){
       const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${x}`)
@@ -29,7 +45,7 @@ export async function getStaticProps() {
     }
 }
 
-const Index = ({result, primaryTypes}:any) => {
+const Index = ({result, primaryTypes}:Pokedex) => {
      const [limit, setLimit] = React.useState(20)
      const {typeToColor} = useTypeColor()
 
@@ -43,7 +59,7 @@ const Index = ({result, primaryTypes}:any) => {
       }
      }
 
-     
+     console.log(result)
     
   return (
     
