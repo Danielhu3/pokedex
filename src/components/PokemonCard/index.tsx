@@ -3,10 +3,11 @@ import { PokemonCard } from './style'
 
 type Props = {
     children: JSX.Element[];
+    color:string;
 }
-const index = ({children}:Props) => {
+const index = ({children,color}:Props) => {
   return (
-    <PokemonCard>{children}</PokemonCard>
+    <PokemonCard color={color}>{children}</PokemonCard>
   )
 }
 

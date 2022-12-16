@@ -11,18 +11,27 @@ export async function getStaticProps() {
     result.results.forEach((item, index:number)=>{
       item.id = index +1
     })
-   
+
+    let primaryTypes = {}
+    
+    for(let x = 1; x<=151;x++){
+      const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${x}`)
+      const result = await data.json()
+      primaryTypes[result.name as keyof typeof primaryTypes] = result.types[0].type.name
+
+    }
+    
 
 
 
     return {
-        props: {result: result.results}
+        props: {result: result.results, primaryTypes}
     }
 }
 
-const Index = ({result}:any) => {
-      // i notice that if i don't get all pokemons data on getStaticProps, i wouldn't be able to make the search function in the future
+const Index = ({result, primaryTypes}:any) => {
      const [limit, setLimit] = React.useState(20)
+     const {typeToColor} = useTypeColor()
 
      function raiseLimit(){
       if(limit === 140){
@@ -33,8 +42,9 @@ const Index = ({result}:any) => {
         setLimit((limit)=> limit + 20)
       }
      }
-  
+
      
+    
   return (
     
     <>
@@ -43,7 +53,7 @@ const Index = ({result}:any) => {
     
       {
         result.slice(0, limit).map((pokemon)=>
-        <PokemonCard key={pokemon.name}>
+        <PokemonCard key={pokemon.name} color={typeToColor(primaryTypes[pokemon.name as keyof typeof primaryTypes])}>
           <span>#{('00'+ pokemon.id).slice(-3)}</span>
           <Image 
           src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${('00' + pokemon.id).slice(-3)}.png`}

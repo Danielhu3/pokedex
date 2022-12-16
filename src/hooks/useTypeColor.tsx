@@ -26,21 +26,20 @@ const typesColors = {
 
    
 
-    async function idToColor(id:string){
+    function typeToColor(type:string){
+      
+        const color = typesColors[type as keyof typeof typesColors]
+        return color
 
-      const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-      const response = await data.json()
-      const type = response.types[0].type.name
-      const color = typesColors[type as keyof typeof typesColors]
       
-      
-      return color
     }
+
+    
     
    
    
   return {
-     idToColor
+     typeToColor
   }
 }
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-export const PokemonCard= styled.div`
+export const PokemonCard= styled.div.attrs((props: {color: string}) => props)`
     height: 300px;
     width: 300px;
 
@@ -14,6 +14,7 @@ export const PokemonCard= styled.div`
     & > span{
         text-align: end;
         margin: 0.4rem 0.8rem 0 0;
+        color: ${props => props.color};
     }
     & > img{
         width: 100%;
@@ -22,7 +23,7 @@ export const PokemonCard= styled.div`
 
     & > a {
         text-decoration: none;
-        background-color: green;
+        background-color: ${props => props.color};
         padding: 0.4rem 0.8rem;
         text-align: center;
         color: white;
