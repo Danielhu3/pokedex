@@ -46,37 +46,36 @@ const Index = ({result, primaryTypes}:Pokedex) => {
      const [limit, setLimit] = React.useState(20)
      const {typeToColor} = useTypeColor()
 
-     function raiseLimit(){
-      if(limit === 140){
-        setLimit((limit)=> limit +11)
-      }
-
-      else{
-        setLimit((limit)=> limit + 20)
-      }
-
-      console.log(limit)
-     }
+     
 
      React.useEffect(()=>{
       const intersectionObserver = new IntersectionObserver((entries)=>{
         
           if(entries.some((entry)=> entry.isIntersecting)){
-            console.log('visivel', entries)
-            
+            //console.log('visivel', entries)
             raiseLimit()
           }
-        
-        
+ 
       })
       const observed = document.querySelector('#observed')
       if(observed !== null){
         intersectionObserver.observe(observed)
       }
+
+      function raiseLimit(){
+        if(limit === 140){
+          setLimit((limit)=> limit +11)
+        }
+  
+        else{
+          setLimit((limit)=> limit + 20)
+        }
+        
+       }
       
 
       return () => intersectionObserver.disconnect()
-     },[])
+     },[limit])
      
     
   return (
@@ -94,7 +93,7 @@ const Index = ({result, primaryTypes}:Pokedex) => {
           width={450}
           height={450}
           />
-          <Link href={`/pokedex/${pokemon.name}`}>{pokemon.name}</Link>
+          <Link href={`/pokedex/${pokemon.name}`}>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</Link>
         </PokemonCard>
         )
       }
