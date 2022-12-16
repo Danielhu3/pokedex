@@ -21,7 +21,7 @@ interface Pokedex{
 
 export async function getStaticProps() {
     
-    const data = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=30')
+    const data = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=151')
     const result = await data.json()
 
     result.results.forEach((item: PokemonProps, index:number)=>{
@@ -37,9 +37,6 @@ export async function getStaticProps() {
 
     }
     
-
-
-
     return {
         props: {result: result.results, primaryTypes}
     }
@@ -57,15 +54,35 @@ const Index = ({result, primaryTypes}:Pokedex) => {
       else{
         setLimit((limit)=> limit + 20)
       }
+
+      console.log(limit)
      }
 
-     console.log(result)
+     React.useEffect(()=>{
+      const intersectionObserver = new IntersectionObserver((entries)=>{
+        
+          if(entries.some((entry)=> entry.isIntersecting)){
+            console.log('visivel', entries)
+            
+            raiseLimit()
+          }
+        
+        
+      })
+      const observed = document.querySelector('#observed')
+      if(observed !== null){
+        intersectionObserver.observe(observed)
+      }
+      
+
+      return () => intersectionObserver.disconnect()
+     },[])
+     
     
   return (
     
     <>
      
-    <button onClick={limit <151 ? ()=> raiseLimit() : ()=>{}}>ADICIONAR</button>
     
       {
         result.slice(0, limit).map((pokemon)=>
@@ -81,6 +98,8 @@ const Index = ({result, primaryTypes}:Pokedex) => {
         </PokemonCard>
         )
       }
+      {limit < 151 && <p id='observed'></p>}
+      
    
     </>
   )
