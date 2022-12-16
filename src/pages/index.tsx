@@ -1,8 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import  PokemonCard  from '../components/PokemonCard/'
+import  PokemonCard  from '../components/pokemonCard'
 import useTypeColor from '../hooks/useTypeColor'
+import  PokemonList  from '../components/pokemonList'
+import  Main  from '../components/main/'
 
 type PokemonProps = {
   name:string;
@@ -79,10 +81,9 @@ const Index = ({result, primaryTypes}:Pokedex) => {
      
     
   return (
-    
-    <>
-     
-    
+    <Main>
+    <PokemonList>
+      <>
       {
         result.slice(0, limit).map((pokemon)=>
         <PokemonCard key={pokemon.name} color={typeToColor(primaryTypes[pokemon.name as keyof typeof primaryTypes])}>
@@ -93,14 +94,16 @@ const Index = ({result, primaryTypes}:Pokedex) => {
           width={450}
           height={450}
           />
+          
           <Link href={`/${pokemon.name}`}>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</Link>
+         
         </PokemonCard>
-        )
+        ) 
       }
-      {limit < 151 && <p id='observed'></p>}
-      
-   
-    </>
+       {limit < 151 && <p id='observed'></p>}
+       </>
+    </PokemonList>
+    </Main>
   )
 }
 
