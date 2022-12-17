@@ -1,13 +1,13 @@
 import styled from "styled-components";
 export const PokemonCard= styled.div.attrs((props: {color: string}) => props)`
-    max-height: 30rem;
+    max-height: 32rem;
     max-width: 30rem;
 
     display: flex;
     flex-direction: column;
     background-color: white;
     border: solid 1px ${props => props.color};
-    flex: 1 1 20rem;
+    flex: 1 1 18rem;
     margin: 1.6rem;
     border-radius: 0.8rem;
 
@@ -17,21 +17,31 @@ export const PokemonCard= styled.div.attrs((props: {color: string}) => props)`
         margin: 0.4rem 0.8rem 0 0;
         color: ${props => props.color};
     }
+
     & > img{
+        
+        display: block;
         max-width: 100%;
         max-height: 100%;
-        display: block;
+
+        margin-bottom: 0;
+        
     }
 
-    
 
-    &  > a {
+    & > a {
+        color: white;
+        font-size: 1.4rem;
+        padding: 0.4rem 0.8rem;
         text-decoration: none;
         background-color: ${props => props.color};
-        padding: 0.4rem 0.8rem;
         text-align: center;
-        color: white;
-        font-size: 1rem;
-        border-radius: 0 0 0.8rem 0.8rem;
+        border-radius: 0 0 0.6rem 0.6rem;
     }
+
+    @media screen and (max-width:720px) {
+        max-height: 35rem;
+        
+    }
+   
 `

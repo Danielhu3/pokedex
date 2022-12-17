@@ -88,14 +88,18 @@ const Index = ({result, primaryTypes}:Pokedex) => {
         result.slice(0, limit).map((pokemon)=>
         <PokemonCard key={pokemon.name} color={typeToColor(primaryTypes[pokemon.name as keyof typeof primaryTypes])}>
           <span>#{('00'+ pokemon.id).slice(-3)}</span>
-          <Image 
-          src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${('00' + pokemon.id).slice(-3)}.png`}
-          alt={pokemon.name}
-          width={450}
-          height={450}
-          />
+
           
-          <Link href={`/${pokemon.name}`}>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</Link>
+            <Image 
+            src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${('00' + pokemon.id).slice(-3)}.png`}
+            alt={pokemon.name}
+            width={450}
+            height={450}
+            />
+          
+          
+            <Link href={`/${pokemon.name}`}>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</Link>
+          
          
         </PokemonCard>
         ) 
