@@ -6,8 +6,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
     <GlobalStyle />
-    <Container>
-      <Component {...pageProps} />
-      </Container>
+    <Component {...pageProps} />
+     
     </>)
 }

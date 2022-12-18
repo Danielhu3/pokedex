@@ -1,4 +1,12 @@
 import React from 'react'
+import  Bottom  from '../components/pokemon/bottom/'
+import  Container  from '../components/pokemon/container/'
+import { Info } from '../components/pokemon/info/style'
+import  Top  from '../components/pokemon/top/'
+import Link from 'next/link'
+import Image from 'next/image'
+import { InfoName } from '../components/pokemon/infoName/style'
+import { InfoNumber } from '../components/pokemon/infoNumber/style'
 
 export async function getStaticProps(context:any) {
     const {params} = context
@@ -30,7 +38,34 @@ export async function getStaticPaths(){
 const pokemonId = ({pokemon}:any) => {
     console.log(pokemon)
   return (
-    <div>{pokemon.name}</div>
+    <Container>
+      <Top>
+
+        <Info>
+
+          <Link href={'/'}>
+            <Image
+            src='/images/back.svg'
+            width={24}
+            height={32}
+            alt='back'
+            />
+          </Link>
+
+          <InfoName />
+          <InfoNumber />
+        </Info>
+
+        <Image 
+        src='/images/back.svg'
+        width={200}
+        height={200}
+        alt={pokemon.name}
+        />
+
+      </Top>
+      <Bottom></Bottom>
+    </Container>
   )
 }
 

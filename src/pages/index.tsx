@@ -1,10 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import  PokemonCard  from '../components/pokemonCard'
 import useTypeColor from '../hooks/useTypeColor'
-import  PokemonList  from '../components/pokemonList'
-import  Main  from '../components/main/'
+import  PokemonCard  from '../components/pokedex/pokemonCard'
+import  PokemonList  from '../components/pokedex/pokemonList'
+import  Main  from '../components/pokedex/main/'
+import  Container  from '../components/pokedex/container/'
 
 type PokemonProps = {
   name:string;
@@ -81,6 +82,7 @@ const Index = ({result, primaryTypes}:Pokedex) => {
      
     
   return (
+    <Container>
     <Main>
     <PokemonList>
       <>
@@ -108,6 +110,7 @@ const Index = ({result, primaryTypes}:Pokedex) => {
        </>
     </PokemonList>
     </Main>
+    </Container>
   )
 }
 
