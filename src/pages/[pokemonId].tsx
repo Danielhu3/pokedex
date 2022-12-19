@@ -1,12 +1,15 @@
 import React from 'react'
 import  Bottom  from '../components/pokemon/bottom/'
 import  Container  from '../components/pokemon/container/'
-import { Info } from '../components/pokemon/info/style'
+import  Info  from '../components/pokemon/info/'
 import  Top  from '../components/pokemon/top/'
 import Link from 'next/link'
 import Image from 'next/image'
-import { InfoName } from '../components/pokemon/infoName/style'
-import { InfoNumber } from '../components/pokemon/infoNumber/style'
+import  InfoLeftName  from '../components/pokemon/infoLeftName'
+import  InfoNumber  from '../components/pokemon/infoNumber/'
+import  InfoLeft  from '../components/pokemon/infoLeft/'
+import  Pokemon  from '../components/pokemon/pokemon/'
+import  PokemonChangeArrow  from '../components/PokemonChangeArrow/'
 
 export async function getStaticProps(context:any) {
     const {params} = context
@@ -42,26 +45,33 @@ const pokemonId = ({pokemon}:any) => {
       <Top>
 
         <Info>
+          <InfoLeft>
+            <Link href={'/'}>
+              <Image
+              src='/images/back.svg'
+              width={24}
+              height={32}
+              alt='back'
+              />
+            </Link>
 
-          <Link href={'/'}>
-            <Image
-            src='/images/back.svg'
-            width={24}
-            height={32}
-            alt='back'
-            />
-          </Link>
-
-          <InfoName />
-          <InfoNumber />
+            <InfoLeftName name={pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}/>
+          </InfoLeft>  
+          <InfoNumber number={pokemon.id} />
         </Info>
 
-        <Image 
-        src='/images/back.svg'
-        width={200}
-        height={200}
-        alt={pokemon.name}
-        />
+        <Pokemon>
+          {pokemon.id > 1 ? <PokemonChangeArrow type='previous' /> : <></>}
+          
+          <Image 
+          src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${('00' + pokemon.id).slice(-3)}.png`}
+          width={200}
+          height={200}
+          alt={pokemon.name}
+          />
+
+          {pokemon.id < 151 ? <PokemonChangeArrow type='next' /> : <></>}
+        </Pokemon>
 
       </Top>
       <Bottom></Bottom>

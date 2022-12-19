@@ -6,7 +6,7 @@ type Props = {
 }
 const index = ({number}:Props) => {
   return (
-    <InfoNumber>{number}</InfoNumber>
+    <InfoNumber>#{('00' +number).slice(-3)}</InfoNumber>
   )
 }
 

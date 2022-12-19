@@ -1,2 +1,8 @@
 import styled from "styled-components";
-export const Info = styled.div``
+export const Info = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+`
