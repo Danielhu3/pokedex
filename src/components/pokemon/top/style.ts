@@ -1,6 +1,5 @@
 import styled from "styled-components";
 export const Top = styled.div`
-    background-color: green;
     grid-area: top;
 
     padding: 2.4rem 2.4rem 0 2.4rem;

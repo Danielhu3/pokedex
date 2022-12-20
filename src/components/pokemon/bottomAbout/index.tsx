@@ -1,12 +1,12 @@
 import React from 'react'
-import { Bottom } from './style'
+import { BottomAbout } from './style'
 
 type Props = {
-  children: JSX.Element[]
+    children: JSX.Element[]
 }
 const index = ({children}: Props) => {
   return (
-    <Bottom>{children}</Bottom>
+    <BottomAbout>{children}</BottomAbout>
   )
 }
 

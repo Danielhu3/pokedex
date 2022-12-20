@@ -5,5 +5,7 @@ export const Container = styled.main`
     grid-template-areas: 'top'
                          'bottom';
     min-height: 100vh;
+    
+    background-color: ${props => props.color && `${props.color}` };
 
 `

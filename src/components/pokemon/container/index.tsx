@@ -2,11 +2,13 @@ import React from 'react'
 import { Container } from './style'
 
 type Props = {
-    children: JSX.Element[]
+    children: JSX.Element[];
+    color: string;
+
 }
-const index = ({children}:Props) => {
+const index = ({children,color}:Props) => {
   return (
-    <Container>{children}</Container>
+    <Container color={color}>{children}</Container>
   )
 }
 

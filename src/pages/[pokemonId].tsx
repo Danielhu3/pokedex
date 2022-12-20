@@ -9,7 +9,13 @@ import  InfoLeftName  from '../components/pokemon/infoLeftName'
 import  InfoNumber  from '../components/pokemon/infoNumber/'
 import  InfoLeft  from '../components/pokemon/infoLeft/'
 import  Pokemon  from '../components/pokemon/pokemon/'
-import  PokemonChangeArrow  from '../components/PokemonChangeArrow/'
+import  PokemonChangeArrow  from '../components/pokemon/PokemonChangeArrow'
+import  BottomTypes  from '../components/pokemon/bottomTypes/'
+import  BottomTypesType  from '../components/pokemon/BottomTypesType/'
+import  BottomAbout  from '../components/pokemon/bottomAbout/'
+import  BottomAboutItems  from '../components/pokemon/bottomAboutItems/'
+import  BottomAboutItemsItem  from '../components/pokemon/bottomAboutItemsItem/'
+import useTypeColor from '../hooks/useTypeColor'
 
 export async function getStaticProps(context:any) {
     const {params} = context
@@ -38,10 +44,14 @@ export async function getStaticPaths(){
       return {paths, fallback:false}
     
 }
-const pokemonId = ({pokemon}:any) => {
+const PokemonId = ({pokemon}:any) => {
     console.log(pokemon)
+    const {typeToColor} = useTypeColor()
+    const primaryTypeColor = typeToColor(pokemon.types[0].type.name)
+    
+   
   return (
-    <Container>
+    <Container color={primaryTypeColor}>
       <Top>
 
         <Info>
@@ -74,9 +84,23 @@ const pokemonId = ({pokemon}:any) => {
         </Pokemon>
 
       </Top>
-      <Bottom></Bottom>
+      <Bottom>
+        <BottomTypes>
+          {pokemon.types.map((item)=> 
+          <BottomTypesType key={item.type.name }type={item.type.name} color={typeToColor(item.type.name)}/>)}
+        </BottomTypes>
+
+        <BottomAbout>
+          <h3>About</h3>
+          <BottomAboutItems>
+            <BottomAboutItemsItem />
+            <BottomAboutItemsItem />
+            <BottomAboutItemsItem />
+          </BottomAboutItems>
+        </BottomAbout>
+      </Bottom>
     </Container>
   )
 }
 
-export default pokemonId
+export default PokemonId

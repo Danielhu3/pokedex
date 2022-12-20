@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const PokemonChangeArrow = styled.a.attrs((props: {type: string}) => props)`
 
     cursor: pointer;
+    align-self: flex-end;
     & img {
         margin-bottom: 1.6rem;
     }
