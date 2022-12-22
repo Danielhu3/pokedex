@@ -17,6 +17,11 @@ import  BottomAboutItems  from '../components/pokemon/bottomAboutItems/'
 import  BottomAboutItemsItem  from '../components/pokemon/bottomAboutItemsItem/'
 import useTypeColor from '../hooks/useTypeColor'
 import  BottomTitle  from '../components/pokemon/bottomTitle/'
+import  BottomStats  from '../components/pokemon/BottomStats/'
+import  BottomStatsStatBar  from '../components/pokemon/BottomStatsStatBar/'
+import  BottomStatsStat  from '../components/pokemon/BottomStatsStat/'
+import  BottomStatsStatName  from '../components/pokemon/BottomStatsStatName/'
+import  BottomStatsStatValue  from '../components/pokemon/bottomStatsStatValue'
 
 export async function getStaticProps(context:any) {
     const {params} = context
@@ -48,7 +53,7 @@ export async function getStaticPaths(){
 
 
 interface Stats {
-  base_state: number;
+  base_stat: number;
   stat:{
     name:string;
   }
@@ -84,7 +89,6 @@ interface Pokemon {
 const PokemonId = ({pokemon}:Pokemon) => {
     const {typeToColor} = useTypeColor()
     const primaryTypeColor = typeToColor(pokemon.types[0].type.name)
-    
    
   return (
     <Container color={primaryTypeColor}>
@@ -134,6 +138,21 @@ const PokemonId = ({pokemon}:Pokemon) => {
             <BottomAboutItemsItem field='Abilities' values={pokemon.abilities}/>
           </BottomAboutItems>
         </BottomAbout>
+
+        <BottomStats>
+          <BottomTitle color={primaryTypeColor} text='Base Stats'/>
+           {
+            pokemon.stats.map((item)=>
+            <BottomStatsStat key={item.stat.name} >
+              <BottomStatsStatName name={item.stat.name} color={primaryTypeColor}/>
+              <BottomStatsStatValue value={item.base_stat}/>
+              <BottomStatsStatBar value={item.base_stat} color={primaryTypeColor}/>
+            </BottomStatsStat>
+            )
+           }
+
+        </BottomStats>
+        
       </Bottom>
     </Container>
   )
