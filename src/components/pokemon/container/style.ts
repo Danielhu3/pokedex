@@ -7,5 +7,6 @@ export const Container = styled.main`
     min-height: 100vh;
     
     background-color: ${props => props.color && `${props.color}` };
+    color: #212121;
 
 `

@@ -16,6 +16,7 @@ import  BottomAbout  from '../components/pokemon/bottomAbout/'
 import  BottomAboutItems  from '../components/pokemon/bottomAboutItems/'
 import  BottomAboutItemsItem  from '../components/pokemon/bottomAboutItemsItem/'
 import useTypeColor from '../hooks/useTypeColor'
+import  BottomTitle  from '../components/pokemon/bottomTitle/'
 
 export async function getStaticProps(context:any) {
     const {params} = context
@@ -91,11 +92,11 @@ const PokemonId = ({pokemon}:any) => {
         </BottomTypes>
 
         <BottomAbout>
-          <h3>About</h3>
+          <BottomTitle color={primaryTypeColor} text='About' />
           <BottomAboutItems>
-            <BottomAboutItemsItem />
-            <BottomAboutItemsItem />
-            <BottomAboutItemsItem />
+            <BottomAboutItemsItem field ='Weight' values={pokemon.weight / 10} />
+            <BottomAboutItemsItem  field ='Height' values={pokemon.height / 10} />
+            <BottomAboutItemsItem field='Abilities' values={pokemon.abilities}/>
           </BottomAboutItems>
         </BottomAbout>
       </Bottom>
