@@ -45,8 +45,43 @@ export async function getStaticPaths(){
       return {paths, fallback:false}
     
 }
-const PokemonId = ({pokemon}:any) => {
-    console.log(pokemon)
+
+
+interface Stats {
+  base_state: number;
+  stat:{
+    name:string;
+  }
+}
+
+interface Abilities {
+  ability:{
+    name:string;
+  }
+}
+
+interface Types  {
+  type: {
+    name:string;
+  }
+}
+
+interface PokemonProps  {
+  weight:number;
+  height:number;
+  id:number;
+  name:string;
+
+  types: Types[];
+  stats: Stats[];
+  abilities: Abilities[];
+
+}
+
+interface Pokemon {
+  pokemon: PokemonProps;
+}
+const PokemonId = ({pokemon}:Pokemon) => {
     const {typeToColor} = useTypeColor()
     const primaryTypeColor = typeToColor(pokemon.types[0].type.name)
     
@@ -94,8 +129,8 @@ const PokemonId = ({pokemon}:any) => {
         <BottomAbout>
           <BottomTitle color={primaryTypeColor} text='About' />
           <BottomAboutItems>
-            <BottomAboutItemsItem field ='Weight' values={pokemon.weight / 10} />
-            <BottomAboutItemsItem  field ='Height' values={pokemon.height / 10} />
+            <BottomAboutItemsItem field ='Weight' value={pokemon.weight / 10} />
+            <BottomAboutItemsItem  field ='Height' value={pokemon.height / 10} />
             <BottomAboutItemsItem field='Abilities' values={pokemon.abilities}/>
           </BottomAboutItems>
         </BottomAbout>
