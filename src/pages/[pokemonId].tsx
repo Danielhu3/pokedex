@@ -39,10 +39,10 @@ export async function getStaticPaths(){
     const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151') 
     const data = await response.json()
 
-    const paths = data.results.map((pokemon:{name:string})=>{
+    const paths = data.results.map((_:any, index:number)=>{
         return{
           params:{
-            pokemonId: `${pokemon.name}`
+            pokemonId: `${index+1}`
           }
         }
       })
@@ -89,6 +89,7 @@ interface Pokemon {
 const PokemonId = ({pokemon}:Pokemon) => {
     const {typeToColor} = useTypeColor()
     const primaryTypeColor = typeToColor(pokemon.types[0].type.name)
+
    
   return (
     <Container color={primaryTypeColor}>
@@ -111,7 +112,7 @@ const PokemonId = ({pokemon}:Pokemon) => {
         </Info>
 
         <Pokemon>
-          {pokemon.id > 1 ? <PokemonChangeArrow type='previous' /> : <></>}
+          {pokemon.id > 1 ? <PokemonChangeArrow type='previous' id={pokemon.id} /> : <></>}
           
           <Image 
           src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${('00' + pokemon.id).slice(-3)}.png`}
@@ -120,7 +121,7 @@ const PokemonId = ({pokemon}:Pokemon) => {
           alt={pokemon.name}
           />
 
-          {pokemon.id < 151 ? <PokemonChangeArrow type='next' /> : <></>}
+          {pokemon.id < 151 ? <PokemonChangeArrow type='next' id={pokemon.id}/> : <></>}
         </Pokemon>
 
       </Top>

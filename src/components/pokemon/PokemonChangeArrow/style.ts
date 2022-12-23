@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PokemonChangeArrow = styled.a.attrs((props: {type: string}) => props)`
+export const PokemonChangeArrow = styled.div.attrs((props: {type: string}) => props)`
 
     cursor: pointer;
     align-self: flex-end;
