@@ -1,9 +1,12 @@
 import React from 'react'
+import  Container  from '../components/pokedex/container/'
 
 const favorites = () => {
     //console.log()
   return (
-    <div>favorites</div>
+    <Container>
+      <p>Favorites</p>
+    </Container>
   )
 }
 

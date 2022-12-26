@@ -35,3 +35,7 @@ create file .babelrc with:
     ]
   ]
 }
+
+
+# TODO
+- Refatorar o <PokemonCard>, resultado do map pra exibir tanto na pagina inicial quanto nos favoritos, sem repetir codigo
