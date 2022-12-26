@@ -1,12 +1,12 @@
 import React from 'react'
-import { InfoNumber } from './style'
+import { InfoRightNumber } from './style'
 
 type Props = {
     number:number
 }
 const index = ({number}:Props) => {
   return (
-    <InfoNumber>#{('00' +number).slice(-3)}</InfoNumber>
+    <InfoRightNumber>#{('00' +number).slice(-3)}</InfoRightNumber>
   )
 }
 

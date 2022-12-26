@@ -6,7 +6,9 @@ const Index = () => {
 
 
   return (
+   
     <SearchBar placeholder='Search' value={value} onChange={(e)=> setValue(e.target.value)}></SearchBar>
+    
   )
 }
 

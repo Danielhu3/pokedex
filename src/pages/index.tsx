@@ -6,6 +6,8 @@ import  PokemonCard  from '../components/pokedex/pokemonCard'
 import  PokemonList  from '../components/pokedex/pokemonList'
 import  Main  from '../components/pokedex/main/'
 import  Container  from '../components/pokedex/container/'
+import  PokemonCardInfo  from '../components/pokedex/pokemonCardInfo/'
+import  IconStar from '../components/svg/iconStar'
 
 type PokemonProps = {
   name:string;
@@ -79,6 +81,7 @@ const Index = ({result, primaryTypes}:Pokedex) => {
       return () => intersectionObserver.disconnect()
      },[limit])
      
+     
     
   return (
     <Container>
@@ -88,20 +91,18 @@ const Index = ({result, primaryTypes}:Pokedex) => {
       {
         result.slice(0, limit).map((pokemon)=>
         <PokemonCard key={pokemon.name} color={typeToColor(primaryTypes[pokemon.name as keyof typeof primaryTypes])}>
-          <span>#{('00'+ pokemon.id).slice(-3)}</span>
+            <PokemonCardInfo>
+              <IconStar border={true}/>
+              <span>#{('00'+ pokemon.id).slice(-3)}</span> 
+            </PokemonCardInfo>
 
-          
             <Image 
             src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${('00' + pokemon.id).slice(-3)}.png`}
             alt={pokemon.name}
             width={450}
             height={450}
             />
-          
-          
-            <Link href={`/${pokemon.name}`}>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</Link>
-          
-         
+            <Link href={`/${pokemon.id}`}>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</Link>
         </PokemonCard>
         ) 
       }

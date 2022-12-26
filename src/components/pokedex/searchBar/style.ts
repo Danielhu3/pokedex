@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import iconSearch from '../../../public/images/icon-pokeball.svg'
+
 
 export const SearchBar = styled.input.attrs((props: {value: string}) => props)`
 
@@ -7,11 +7,13 @@ export const SearchBar = styled.input.attrs((props: {value: string}) => props)`
     border-radius: 0.8rem;
     outline: none;
 
-    padding: 0.4rem 0;
+    padding: 0.4rem 0.8rem;
 
-    text-align: center;
-    
-  
-
+    background-image: url('/images/icon-search.svg');
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 0.8rem;
+    background-size: 1.4rem auto;
+    padding-left: 2.8rem;
     
 `

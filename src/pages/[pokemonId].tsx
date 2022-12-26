@@ -6,7 +6,7 @@ import  Top  from '../components/pokemon/top/'
 import Link from 'next/link'
 import Image from 'next/image'
 import  InfoLeftName  from '../components/pokemon/infoLeftName'
-import  InfoNumber  from '../components/pokemon/infoNumber/'
+import  InfoRightNumber  from '../components/pokemon/infoRightNumber/'
 import  InfoLeft  from '../components/pokemon/infoLeft/'
 import  Pokemon  from '../components/pokemon/pokemon/'
 import  PokemonChangeArrow  from '../components/pokemon/PokemonChangeArrow'
@@ -22,6 +22,9 @@ import  BottomStatsStatBar  from '../components/pokemon/BottomStatsStatBar/'
 import  BottomStatsStat  from '../components/pokemon/BottomStatsStat/'
 import  BottomStatsStatName  from '../components/pokemon/BottomStatsStatName/'
 import  BottomStatsStatValue  from '../components/pokemon/bottomStatsStatValue'
+import  InfoRight  from '../components/pokemon/infoRight/'
+import  IconStar from '../components/svg/iconStar'
+
 
 export async function getStaticProps(context:any) {
     const {params} = context
@@ -108,7 +111,11 @@ const PokemonId = ({pokemon}:Pokemon) => {
 
             <InfoLeftName name={pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}/>
           </InfoLeft>  
-          <InfoNumber number={pokemon.id} />
+          <InfoRight>
+            <IconStar/>
+            <InfoRightNumber number={pokemon.id} />
+          </InfoRight>
+          
         </Info>
 
         <Pokemon>
