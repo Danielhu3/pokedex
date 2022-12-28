@@ -24,7 +24,6 @@ import  BottomStatsStatName  from '../components/pokemon/BottomStatsStatName/'
 import  BottomStatsStatValue  from '../components/pokemon/bottomStatsStatValue'
 import  InfoRight  from '../components/pokemon/infoRight/'
 import  IconStar from '../components/svg/iconStar'
-import useFavorites from '../hooks/useFavorites'
 
 
 export async function getStaticProps(context:any) {
@@ -93,7 +92,7 @@ interface Pokemon {
 const PokemonId = ({pokemon}:Pokemon) => {
     const {typeToColor} = useTypeColor()
     const primaryTypeColor = typeToColor(pokemon.types[0].type.name)
-    const {favorites} = useFavorites()
+
 
    
   return (
@@ -114,7 +113,7 @@ const PokemonId = ({pokemon}:Pokemon) => {
             <InfoLeftName name={pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}/>
           </InfoLeft>  
           <InfoRight>
-            <IconStar isFavorite={favorites && favorites.includes(pokemon.name) ? true : false}/>
+            <IconStar pokemon={pokemon.name}/>
             <InfoRightNumber number={pokemon.id} />
           </InfoRight>
           

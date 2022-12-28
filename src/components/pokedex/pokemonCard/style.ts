@@ -14,7 +14,7 @@ export const PokemonCard= styled.div.attrs((props: {color: string}) => props)`
     
     & > div > span{
         //text-align: end;
-        margin: 0.4rem 0.8rem 0 0;
+        //margin: 0.4rem 0.8rem 0 0;
         color: ${props => props.color};
     }
 

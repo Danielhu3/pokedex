@@ -8,7 +8,6 @@ import  Main  from '../components/pokedex/main/'
 import  Container  from '../components/pokedex/container/'
 import  PokemonCardInfo  from '../components/pokedex/pokemonCardInfo/'
 import  IconStar from '../components/svg/iconStar'
-import useFavorites from '../hooks/useFavorites'
 
 
 type PokemonProps = {
@@ -84,7 +83,6 @@ const Index = ({result, primaryTypes}:Pokedex) => {
      },[limit])
     
 
-      const {favorites} = useFavorites()
    
         return (
           <Container>
@@ -96,7 +94,7 @@ const Index = ({result, primaryTypes}:Pokedex) => {
               <PokemonCard key={pokemon.name} color={typeToColor(primaryTypes[pokemon.name as keyof typeof primaryTypes])}>
                   <PokemonCardInfo>
                     <IconStar border={true} 
-                    isFavorite={favorites && favorites.includes(pokemon.name) ? true : false} 
+                    pokemon={pokemon.name} 
                     />
                     <span>#{('00'+ pokemon.id).slice(-3)}</span> 
                   </PokemonCardInfo>
