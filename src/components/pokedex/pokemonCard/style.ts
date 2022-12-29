@@ -1,13 +1,13 @@
 import styled from "styled-components";
 export const PokemonCard= styled.div.attrs((props: {color: string}) => props)`
-    max-height: 32rem;
+    max-height: 35rem;
     max-width: 30rem;
 
     display: flex;
     flex-direction: column;
     background-color: white;
     border: solid 1px ${props => props.color};
-    flex: 1 1 18rem;
+    flex: 1 1 20rem;
     margin: 1.6rem;
     border-radius: 0.8rem;
 
