@@ -7,6 +7,7 @@ export const Container = styled.div`
     background-color: #F7F7F7;
     //padding: 4.8rem 3.2rem;
     padding: 2.4rem 1.6rem;
-    justify-content: center;
+
+    min-height: 100vh;
 
 `
