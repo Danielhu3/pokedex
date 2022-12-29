@@ -93,8 +93,6 @@ const PokemonId = ({pokemon}:Pokemon) => {
     const {typeToColor} = useTypeColor()
     const primaryTypeColor = typeToColor(pokemon.types[0].type.name)
 
-
-   
   return (
     <Container color={primaryTypeColor}>
       <Top>

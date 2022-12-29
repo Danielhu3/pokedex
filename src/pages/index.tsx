@@ -51,7 +51,7 @@ export async function getStaticProps() {
 const Index = ({result, primaryTypes}:Pokedex) => {
      const [limit, setLimit] = React.useState(20)
      const {typeToColor} = useTypeColor()
-  
+
      
 
      React.useEffect(()=>{
