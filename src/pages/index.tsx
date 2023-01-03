@@ -1,18 +1,13 @@
 import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import useTypeColor from '../hooks/useTypeColor'
-import  PokemonCard  from '../components/pokedex/pokemonCard'
 import  PokemonList  from '../components/pokedex/pokemonList'
 import  Main  from '../components/pokedex/main/'
 import  Container  from '../components/pokedex/container/'
-import  PokemonCardInfo  from '../components/pokedex/pokemonCardInfo/'
-import  IconStar from '../components/svg/iconStar'
+
 
 
 type PokemonProps = {
   name:string;
-  url:string;
+  //url:string;
   id: number;
 }
 
@@ -49,75 +44,16 @@ export async function getStaticProps() {
 }
 
 const Index = ({result, primaryTypes}:Pokedex) => {
-     const [limit, setLimit] = React.useState(20)
-     const {typeToColor} = useTypeColor()
-
+      console.log(result)
      
-
-     React.useEffect(()=>{
-      const intersectionObserver = new IntersectionObserver((entries)=>{
-        
-          if(entries.some((entry)=> entry.isIntersecting)){
-            raiseLimit()
-          }
- 
-      })
-      const observed = document.querySelector('#observed')
-      if(observed !== null){
-        intersectionObserver.observe(observed)
-      }
-
-      function raiseLimit(){
-        if(limit === 140){
-          setLimit((limit)=> limit +11)
-        }
-  
-        else{
-          setLimit((limit)=> limit + 20)
-        }
-        
-       }
-      
-
-      return () => intersectionObserver.disconnect()
-     },[limit])
-    
-
-   
         return (
           <Container>
           <Main>
-          <PokemonList>
-            <>
-            {
-              result.slice(0, limit).map((pokemon)=>
-              <PokemonCard key={pokemon.name} color={typeToColor(primaryTypes[pokemon.name as keyof typeof primaryTypes])}>
-                  <PokemonCardInfo>
-                    <IconStar border={true} 
-                    pokemon={pokemon.name} 
-                    />
-                    <span>#{('00'+ pokemon.id).slice(-3)}</span> 
-                  </PokemonCardInfo>
-      
-                  <Image 
-                  src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${('00' + pokemon.id).slice(-3)}.png`}
-                  alt={pokemon.name}
-                  width={450}
-                  height={450}
-                  />
-                  <Link href={`/${pokemon.id}`}>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</Link>
-              </PokemonCard>
-              ) 
-            }
-             {limit < 151 && <p id='observed'></p>}
-             </>
-          </PokemonList>
+          <PokemonList pokemonList={result} primaryTypes={primaryTypes}/>
           </Main>
           </Container>
         )
-        
-      
-      
+          
   
 }
 

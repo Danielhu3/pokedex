@@ -38,5 +38,5 @@ create file .babelrc with:
 
 
 # TODO
-- Refatorar o <PokemonCard>, resultado do map pra exibir tanto na pagina inicial quanto nos favoritos, sem repetir codigo
-- Consertar o css do card fazendo com que o 'a' com o nome do pokemon não fique fora do card (ajustar height do pokemonCard)
+- Refatorar o <PokemonCard>, resultado do map pra exibir tanto na pagina inicial quanto nos favoritos, sem repetir codigo (X)
+- Consertar o css do card fazendo com que o 'a' com o nome do pokemon não fique fora do card (ajustar height do pokemonCard) (X)
