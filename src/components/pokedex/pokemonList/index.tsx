@@ -28,8 +28,13 @@ type Props = {
 }
 const Index = ({ pokemonList, primaryTypes}:Props) => {
   const {typeToColor} = useTypeColor()
-
   const [limit, setLimit] = React.useState(20)
+  const [localPokemonList, setLocalPokemonList] = React.useState<PokemonProps[]>()
+
+  React.useEffect(()=>{
+    setLocalPokemonList(pokemonList)
+  }, [pokemonList])
+
 
      
 
@@ -63,8 +68,8 @@ const Index = ({ pokemonList, primaryTypes}:Props) => {
   return (
     <PokemonList>
       {
-        pokemonList && pokemonList.length > 0 ? 
-        pokemonList.slice(0,limit).map((pokemon)=>
+        localPokemonList && localPokemonList.length > 0 ? 
+        localPokemonList.slice(0,limit).map((pokemon)=>
         <PokemonCard key={pokemon.name} 
         color={primaryTypes ? typeToColor(primaryTypes[pokemon.name as keyof typeof primaryTypes]) 
         : pokemon.types ? typeToColor( pokemon.types[0].type.name) : ''}>

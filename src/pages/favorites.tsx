@@ -3,6 +3,7 @@ import  Container  from '../components/pokedex/container/'
 import  Main  from '../components/pokedex/main/'
 import  PokemonList  from '../components/pokedex/pokemonList/'
 import {useFavoritesContext} from '../contexts/favoritesContext'
+import {useSortListContext} from '../contexts/sortListContext'
 
 interface Types  {
   type: {
@@ -19,8 +20,19 @@ interface PokemonProps {
 
 const Favorites = () => {
     const {favorites} = useFavoritesContext()
+    const {sorts, actualSort} = useSortListContext()
+
     const [localFavorites, setLocalFavorites] = React.useState<string[]>()
     const [pokemonList, setPokemonList] = React.useState<PokemonProps[]>([])
+
+
+    React.useEffect(()=>{
+      if(typeof window !== 'undefined'){
+        console.log(actualSort, sorts)
+      }
+      
+
+    },[actualSort, sorts])
 
     React.useEffect(()=>{
       if(localFavorites && localFavorites.length > 0){
@@ -45,7 +57,8 @@ const Favorites = () => {
       setLocalFavorites(favorites)
       setPokemonList([])
     }, [favorites])
-    
+
+  
  
     
       

@@ -44,7 +44,6 @@ export async function getStaticProps() {
 }
 
 const Index = ({result, primaryTypes}:Pokedex) => {
-      console.log(result)
      
         return (
           <Container>

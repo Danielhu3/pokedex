@@ -7,7 +7,7 @@ export const FavoritesContext = React.createContext<Props>({
     setFavorites: ()=>{}
 })
 
-export function FavoritesProvider({children}: any){
+export function FavoritesProvider({children}:any){
     const [favorites, setFavorites] = React.useState<string[]>()
 
     function getFavorites(){
